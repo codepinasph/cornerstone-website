@@ -43,7 +43,7 @@ const orbitCapabilities = [
   ['Attendance', 'clock', 'micro-timekeeping'],
   ['Recruitment', 'user-plus', 'micro-biometrics'],
   ['End-to-End Operations', 'window', 'micro-webbundy'],
-  ['AI-Assisted Application', 'spark', 'micro-scheduling'],
+  ['AI-assisted Application', 'spark', 'micro-scheduling'],
 ];
 
 const benefits = [
