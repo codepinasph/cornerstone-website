@@ -1,18 +1,18 @@
-# Cornerstone Landing Page
+# Cornerstone Landing Page - v8 Oval UI
 
-A complete React + Vite landing page for Cornerstone with a premium glassmorphism SaaS look.
+A complete React + Vite landing page for Cornerstone Business Solutions.
 
 ## Highlights
 
-- Apple-style system font stack
-- Classier glass skin and softer premium shadows
-- Clear Cornerstone brand treatment
-- Refined atom diagram with CRM, HRIS, and Payroll in a triangle layout
-- Fixed center core caption so it stays inside the circle
-- CRM node repositioned to avoid overlapping the center core
-- Moving orbit dots retained; product node bounce animation retained
-- Responsive mobile layout
-- Contact / booking form using `mailto:`
+- CRM, HRIS, and Payroll as the three core product highlights
+- Futuristic atom/orbit hero animation retained
+- Refined oval/pill section labels inspired by the provided reference
+- Cleaner product positioning based on focused SaaS wedge feedback
+- About Us section
+- Single Book Appointment form
+- Professional dark footer
+- Responsive layout
+- Production build included in `dist/`
 
 ## Run locally
 
@@ -27,4 +27,10 @@ npm run dev
 npm run build
 ```
 
-The production build will be created in the `dist` folder.
+
+## v10 updates
+
+- Applied the light glass footer UI language across the full page.
+- Replaced the dark booking block with a bright, consistent glass panel.
+- Added subtle content dividers so the page feels like one connected experience.
+- Preserved the atom animation and product positioning.
