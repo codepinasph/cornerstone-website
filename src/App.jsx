@@ -360,7 +360,7 @@ function Hero() {
       <div className="hero-copy">
         <p className="eyebrow">One core business platform</p>
         <h1>
-          One AI-Powered Platform for <span>Customers, People, and Payroll</span>
+          Don’t Just Simplify CRM, HRIS, and Payroll. <span>Make Them Accurate, Connected, and Intelligent</span>
         </h1>
         <p className="hero-subtitle">
           Cornerstone brings CRM, HRIS, attendance, payroll, compliance, and employee workflows into one intelligent system — helping businesses automate operations, reduce errors, and make faster decisions.
@@ -396,7 +396,7 @@ function ProductCards() {
     <section className="section product-section" id="product">
       <div className="section-heading">
         <p className="eyebrow mini-eyebrow">Focused platform</p>
-        <h2>Don’t Just Simplify CRM, HRIS, and Payroll. <span>Make Them Accurate, Connected, and Intelligent.</span></h2>
+        <h2>One AI-Powered Platform for <span>Customers, People, and Payroll</span></h2>
         <p>Unify your customer, HR, and payroll operations in one AI-powered system built for accuracy, visibility, and control — not just a cleaner interface.</p>
       </div>
 
