@@ -396,8 +396,8 @@ function ProductCards() {
     <section className="section product-section" id="product">
       <div className="section-heading">
         <p className="eyebrow mini-eyebrow">Focused platform</p>
-        <h2>One operating core for customers, people, and payroll.</h2>
-        <p>Start with the workflow that matters most, then connect CRM, HRIS, and Payroll as one clear operating layer when your team is ready.</p>
+        <h2>Don’t Just Simplify CRM, HRIS, and Payroll. Make Them Accurate, Connected, and Intelligent.</h2>
+        <p>Unify your customer, HR, and payroll operations in one AI-powered system built for accuracy, visibility, and control — not just a cleaner interface.</p>
       </div>
 
       <div className="product-grid">
