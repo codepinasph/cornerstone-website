@@ -360,7 +360,7 @@ function Hero() {
       <div className="hero-copy">
         <p className="eyebrow">One core business platform</p>
         <h1>
-          Don’t Just Simplify CRM, HRIS, and Payroll. <span>Make Them Accurate, Connected, and Intelligent</span>
+          Don’t Just Simplify. <span>Make Them Accurate, Connected, and Intelligent</span>
         </h1>
         <p className="hero-subtitle">
           Cornerstone brings CRM, HRIS, attendance, payroll, compliance, and employee workflows into one intelligent system — helping businesses automate operations, reduce errors, and make faster decisions.
