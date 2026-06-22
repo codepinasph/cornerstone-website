@@ -363,7 +363,7 @@ function Hero() {
           One AI-Powered Platform for <span>Customers, People, and Payroll</span>
         </h1>
         <p className="hero-subtitle">
-          Cornerstone connects the workflows companies feel every day: customers to manage, employees to support, attendance to verify, and payroll to release accurately.
+          Cornerstone brings CRM, HRIS, attendance, payroll, compliance, and employee workflows into one intelligent system — helping businesses automate operations, reduce errors, and make faster decisions.
         </p>
         <div className="hero-actions">
           <a className="btn btn-primary btn-large" href="#booking">Book an Appointment <span>→</span></a>
