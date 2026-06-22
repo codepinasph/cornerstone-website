@@ -2655,3 +2655,530 @@ main .site-footer,
     border-radius: 20px;
   }
 }
+
+/* v12: final responsive layer for tablet and phone viewports */
+*,
+*::before,
+*::after {
+  letter-spacing: 0 !important;
+}
+
+html,
+body,
+#root,
+.page-shell {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+main,
+.site-header,
+main > section,
+.benefit-strip,
+.section,
+.buyer-section,
+.ai-section,
+.about-section,
+.contact-section,
+.site-footer {
+  max-width: 100%;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+.site-header {
+  width: auto;
+}
+
+.hero-copy,
+.section-heading,
+.contact-copy,
+.about-card,
+.product-card,
+.insight-card,
+.ai-card,
+.contact-form {
+  min-width: 0;
+}
+
+@media (max-width: 1220px) {
+  .site-header {
+    gap: 16px;
+  }
+
+  .desktop-nav {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+    flex: 0 0 46px;
+  }
+
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero-copy {
+    justify-self: center;
+  }
+
+  .atom-stage {
+    width: min(100%, 820px);
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .insight-grid,
+  .ai-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .about-section,
+  .contact-section {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .contact-form {
+    width: min(100%, 760px);
+    justify-self: center;
+  }
+}
+
+@media (max-width: 900px) {
+  .product-grid,
+  .benefit-strip,
+  .insight-grid,
+  .ai-grid,
+  .footer-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .benefit-card {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    padding: 0 0 16px;
+  }
+
+  .benefit-card:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  .page-shell {
+    padding-bottom: 18px;
+  }
+
+  .site-header {
+    min-height: 72px;
+    margin: 12px;
+    padding: 12px 64px 12px 14px;
+    border-radius: 20px;
+    position: sticky;
+  }
+
+  .brand {
+    min-width: 0;
+    max-width: 100%;
+    gap: 10px;
+  }
+
+  .brand img {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+  }
+
+  .brand div {
+    min-width: 0;
+  }
+
+  .brand span:first-child {
+    font-size: clamp(1.05rem, 5vw, 1.3rem);
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .brand small {
+    font-size: 0.55rem;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .header-actions {
+    position: absolute;
+    top: 50%;
+    right: 14px;
+    transform: translateY(-50%);
+    gap: 8px;
+    flex: 0 0 auto;
+  }
+
+  .header-actions .btn-primary {
+    display: none;
+  }
+
+  .menu-toggle {
+    width: 42px;
+    height: 42px;
+    border-radius: 13px;
+  }
+
+  .mobile-panel {
+    left: 12px;
+    right: 12px;
+    top: calc(100% + 8px);
+    border-radius: 18px;
+  }
+
+  main {
+    margin: 12px;
+    border-radius: 24px;
+  }
+
+  .hero,
+  .benefit-strip,
+  .section,
+  .buyer-section,
+  .ai-section,
+  .about-section,
+  .contact-section {
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+
+  .hero {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 34px 14px 24px;
+    gap: 24px;
+    overflow: hidden;
+  }
+
+  .hero-copy {
+    width: 100%;
+    max-width: 100%;
+    text-align: left;
+  }
+
+  .hero .eyebrow {
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-size: clamp(2.05rem, 8.4vw, 2.85rem);
+    line-height: 1.05;
+    margin-bottom: 18px;
+    overflow-wrap: anywhere;
+  }
+
+  .hero-subtitle {
+    max-width: 100%;
+    font-size: 1rem;
+    line-height: 1.65;
+    margin-bottom: 24px;
+    overflow-wrap: anywhere;
+  }
+
+  .hero-actions {
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .btn-large,
+  .hero-actions .btn,
+  .video-link {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    justify-content: center;
+  }
+
+  .atom-stage {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    margin: 8px auto 0;
+    transform: none !important;
+    perspective: none;
+  }
+
+  .atom-bg,
+  .atom-orbits,
+  .triangle-path,
+  .core-glow {
+    display: none;
+  }
+
+  .core-card,
+  .main-node,
+  .micro-node {
+    position: relative !important;
+    inset: auto !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    animation: none !important;
+    pointer-events: auto;
+  }
+
+  .core-card {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 112px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    place-items: center start;
+    align-content: center;
+    gap: 12px;
+    padding: 18px;
+    border-radius: 24px;
+    text-align: left;
+    overflow: hidden;
+  }
+
+  .core-card img {
+    width: 62px;
+    height: 62px;
+    margin: 0;
+  }
+
+  .core-card strong,
+  .core-card span {
+    max-width: 100%;
+    white-space: normal;
+    text-align: left;
+  }
+
+  .core-card span {
+    grid-column: 2;
+    font-size: 0.68rem;
+  }
+
+  .main-node {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 104px;
+    grid-template-columns: auto 1fr;
+    justify-items: start;
+    align-items: center;
+    gap: 6px 14px;
+    padding: 18px !important;
+    border-radius: 22px !important;
+    text-align: left;
+  }
+
+  .main-node .icon {
+    grid-row: span 2;
+    margin: 0;
+  }
+
+  .main-node strong {
+    font-size: 1.2rem;
+  }
+
+  .main-node span {
+    max-width: none;
+    font-size: 0.82rem;
+  }
+
+  .micro-node {
+    width: 100% !important;
+    min-height: 0;
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 12px 14px !important;
+    border-radius: 18px !important;
+    text-align: left;
+  }
+
+  .micro-node .icon {
+    width: 22px;
+    height: 22px;
+    margin: 0;
+    flex: 0 0 auto;
+  }
+
+  .micro-node span {
+    max-width: none;
+    margin: 0;
+    font-size: 0.82rem !important;
+  }
+
+  .benefit-strip,
+  .ai-section,
+  .buyer-section,
+  .about-card,
+  .about-points article,
+  .contact-section,
+  .product-card,
+  .insight-card {
+    border-radius: 22px;
+  }
+
+  .benefit-strip,
+  .ai-section,
+  .buyer-section,
+  .contact-section {
+    padding: 18px;
+  }
+
+  .section {
+    padding-top: 48px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .section-heading {
+    margin-bottom: 24px;
+    text-align: left;
+  }
+
+  .section-heading h2,
+  .compact-heading h2,
+  .ai-section h2,
+  .contact-section h2,
+  .about-card h2 {
+    font-size: clamp(1.75rem, 8vw, 2.35rem);
+    line-height: 1.12;
+  }
+
+  .section-heading p,
+  .about-card p,
+  .contact-copy p {
+    font-size: 0.98rem;
+    line-height: 1.65;
+  }
+
+  .product-card {
+    min-height: 0;
+    padding: 18px;
+  }
+
+  .product-top {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .product-top h3 {
+    font-size: 1.35rem;
+  }
+
+  .ai-card {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .contact-form {
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+    padding: 18px;
+    border-radius: 22px;
+  }
+
+  .full-field {
+    grid-column: 1;
+  }
+
+  .booking-highlights article {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .booking-highlights span {
+    grid-column: 2;
+  }
+
+  .site-footer {
+    padding-inline: 18px !important;
+  }
+
+  .footer-grid {
+    gap: 24px;
+  }
+
+  .footer-bottom,
+  .footer-contact,
+  .footer-meta {
+    justify-content: flex-start;
+    text-align: left;
+  }
+}
+
+@media (max-width: 430px) {
+  .site-header {
+    padding-inline: 12px;
+    padding-right: 60px;
+  }
+
+  .brand span:first-child {
+    font-size: 1.08rem;
+  }
+
+  .brand small {
+    font-size: 0.5rem;
+  }
+
+  .hero,
+  .benefit-strip,
+  .section,
+  .buyer-section,
+  .ai-section,
+  .about-section,
+  .contact-section {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .hero {
+    padding-inline: 12px;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 9.2vw, 2.45rem);
+  }
+
+  .core-card,
+  .main-node,
+  .benefit-card,
+  .mini-card,
+  .ai-card {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: start;
+  }
+
+  .core-card span,
+  .benefit-card p,
+  .mini-card p,
+  .ai-card p {
+    grid-column: 1;
+  }
+
+  .booking-highlights article {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .booking-highlights span {
+    grid-column: 1;
+  }
+}
+@media (min-width: 800px) {
+  .page-shell {
+    width: min(100%, 1690px);
+  }
+}
