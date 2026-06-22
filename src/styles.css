@@ -2545,7 +2545,7 @@ main .site-footer,
 
 /* Atom micro nodes: longer labels, transparent skin, no overlap */
 .micro-node {
-  width: 150px !important;
+  width: 132px !important;
   min-height: 72px;
   padding: 10px 12px !important;
   border-radius: 22px !important;
@@ -2558,7 +2558,7 @@ main .site-footer,
 }
 
 .micro-node span {
-  max-width: 122px;
+  max-width: 108px;
   margin-inline: auto;
   font-size: .68rem !important;
   line-height: 1.18 !important;
@@ -2616,7 +2616,7 @@ main .site-footer,
 }
 
 .micro-webbundy {
-  left: calc(50% - 170px) !important;
+  left: calc(50% - 152px) !important;
   right: auto !important;
   bottom: -58px !important;
 }
@@ -2629,11 +2629,11 @@ main .site-footer,
 
 @media (max-width: 1220px) {
   .micro-node {
-    width: 138px !important;
+    width: 124px !important;
   }
 
   .micro-webbundy {
-    left: calc(50% - 158px) !important;
+    left: calc(50% - 144px) !important;
     bottom: -52px !important;
   }
 

@@ -363,7 +363,8 @@ function Hero() {
           Don’t Just <i>Simplify</i>. <span>Make Them Accurate, Connected, and Intelligent</span>
         </h1>
         <p className="hero-subtitle">
-          Cornerstone brings CRM, HRIS, attendance, payroll, compliance, and employee workflows into one intelligent system — helping businesses automate operations, reduce errors, and make faster decisions.
+          {/* Cornerstone brings CRM, HRIS, attendance, payroll, compliance, and employee workflows into one intelligent system — helping businesses automate operations, reduce errors, and make faster decisions. */}
+          Bring CRM, HRIS, and Payroll together with AI-driven workflows that help reduce errors, improve decisions, and keep every process connected from start to finish.
         </p>
         <div className="hero-actions">
           <a className="btn btn-primary btn-large" href="#booking">Book an Appointment <span>→</span></a>
