@@ -482,7 +482,12 @@ h1 span { color: var(--green-600); display: block; }
   letter-spacing: -0.05em;
   margin-bottom: 14px;
 }
-.section-heading h2 span, .compact-heading h2 span { color: var(--green-600); }
+.section-heading h2 span,
+.compact-heading h2 span,
+.about-card h2 span,
+.contact-copy h2 span {
+  color: var(--green-600);
+}
 .section-heading p { color: var(--blue-900); font-size: 1.08rem; line-height: 1.7; margin-bottom: 0; }
 .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 3vw, 32px); }
 .product-card {

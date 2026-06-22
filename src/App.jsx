@@ -396,7 +396,7 @@ function ProductCards() {
     <section className="section product-section" id="product">
       <div className="section-heading">
         <p className="eyebrow mini-eyebrow">Focused platform</p>
-        <h2>Don’t Just Simplify CRM, HRIS, and Payroll. Make Them Accurate, Connected, and Intelligent.</h2>
+        <h2>Don’t Just Simplify CRM, HRIS, and Payroll. <span>Make Them Accurate, Connected, and Intelligent.</span></h2>
         <p>Unify your customer, HR, and payroll operations in one AI-powered system built for accuracy, visibility, and control — not just a cleaner interface.</p>
       </div>
 
@@ -424,7 +424,7 @@ function OperatingOutcomes() {
     <section className="buyer-section" id="outcomes">
       <div className="section-heading">
         <p className="eyebrow mini-eyebrow">Why Cornerstone</p>
-        <h2>Built to solve operational gaps without adding complexity.</h2>
+        <h2>Built to <span>solve operational gaps</span> without adding complexity.</h2>
         <p>Cornerstone keeps implementation practical: solve the highest-friction workflow first, connect the adjacent data, then expand only when the core process is working well.</p>
       </div>
       <div className="insight-grid">
@@ -466,7 +466,7 @@ function AboutUs() {
     <section className="about-section" id="about">
       <div className="about-card">
         <p className="eyebrow mini-eyebrow">About us</p>
-        <h2>We are building focused business software for teams that have outgrown spreadsheets.</h2>
+        <h2><span>We are building focused business software</span> for teams that have outgrown spreadsheets.</h2>
         <p>
           Cornerstone is designed for growing companies that need practical automation, not software that tries to solve everything at once. We focus on CRM, HRIS, and Payroll first because these are the workflows that directly affect revenue, people, and trust.
         </p>
@@ -501,7 +501,7 @@ function ContactBooking() {
     <section className="contact-section dark-contact" id="booking">
       <div className="contact-copy">
         <p className="eyebrow mini-eyebrow">Book appointment</p>
-        <h2>Start with the workflow that matters most.</h2>
+        <h2><span>Start with the workflow</span> that matters most.</h2>
         <p>Book one focused conversation. We will help you identify the best starting point across CRM, HRIS, Payroll, Attendance, Recruitment, or End-to-End HRIS and Payroll.</p>
         <div className="booking-highlights">
           <article><Icon name="calendar" /><strong>Focused demo</strong><span>See only the workflows relevant to your business.</span></article>
