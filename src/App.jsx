@@ -360,7 +360,7 @@ function Hero() {
       <div className="hero-copy">
         <p className="eyebrow">One core business platform</p>
         <h1>
-          Run your business <span>from one connected core</span>
+          One AI-Powered Platform for <span>Customers, People, and Payroll</span>
         </h1>
         <p className="hero-subtitle">
           Cornerstone connects the workflows companies feel every day: customers to manage, employees to support, attendance to verify, and payroll to release accurately.
