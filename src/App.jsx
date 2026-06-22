@@ -589,7 +589,13 @@ function Footer() {
       </div>
       <div className="footer-contact"><span>✉ codepinasph@gmail.com</span><span>⌖ Philippines • Global-ready operations</span><span>Book a focused product walkthrough</span></div>
       <div className="footer-meta"><span>• Cloud-Based</span><span>• Focused Rollout</span><span>• AI-Assisted Workflows</span><span>• Payroll-Ready Data</span><span>• End-to-End Operations</span></div>
-      <div className="footer-bottom"><span>© {year} Cornerstone Business Solutions. All rights reserved.</span><span>Powered by <strong>Artificial Intelligence</strong></span></div>
+      <div className="footer-bottom">
+        <span>© {year} Cornerstone Business Solutions. All rights reserved.</span>
+        <span className="powered-by">
+          <span>Powered by</span>
+          <img src="/codepinas_logo.png" alt="CodePinas Solutions" />
+        </span>
+      </div>
     </footer>
   );
 }
