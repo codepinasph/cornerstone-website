@@ -66,7 +66,7 @@ function generateEmailTemplate(array $data): string {
         '.footer { background: #f8fafc; padding: 20px 30px; color: #475569; font-size: 13px; border-top: 1px solid #e2e8f0; }' .
         '</style></head><body>' .
         '<div class="wrapper">' .
-        '<div class="header"><h1>New Cornerstone Website Request</h1><p>CRM | HRIS | PAYROLL enquiry from the landing page</p></div>' .
+        '<div class="header"><h1>New CornerstoneOS Website Request</h1><p>CRM | HRIS | PAYROLL enquiry from the landing page</p></div>' .
         '<div class="content">' .
         renderField('Full Name', $name) .
         renderField('Email Address', '<a href="mailto:' . $email . '" style="color:#0d5fb8;text-decoration:none;">' . $email . '</a>') .
@@ -109,7 +109,7 @@ $interest = trim((string) ($formData['interest'] ?? 'Contact Request'));
 $safeInterest = preg_replace('/[\r\n]+/', ' ', $interest);
 
 $to = 'dhisanan@gmail.com';
-$subject = 'Cornerstone ' . $safeInterest . ' from ' . $safeName;
+$subject = 'CornerstoneOS ' . $safeInterest . ' from ' . $safeName;
 $body = generateEmailTemplate($formData);
 
 $headers = [];

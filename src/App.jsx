@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import cornerstoneMark from './assets/cornerstone-mark.png';
+import cornerstoneLogo from './assets/cornerstoneOS-logo.png';
 
 const navItems = [
   { label: 'Platform', href: '#product' },
@@ -270,12 +270,8 @@ function Header() {
 
   return (
     <header className="site-header">
-      <a className="brand" href="#top" aria-label="Cornerstone home" onClick={closeMenu}>
-        <img src={cornerstoneMark} alt="Cornerstone logo mark" />
-        <div>
-          <span>Corner<span>stone</span></span>
-          <small>CRM | HRIS | PAYROLL</small>
-        </div>
+      <a className="brand" href="#top" aria-label="CornerstoneOS home" onClick={closeMenu}>
+        <img src={cornerstoneLogo} alt="CornerstoneOS logo" />
       </a>
 
       <nav className="desktop-nav" aria-label="Main navigation">
@@ -302,7 +298,7 @@ function OrbitDiagram() {
   const orbitPathC = 'M72 320a288 172 0 1 0 576 0a288 172 0 1 0 -576 0';
 
   return (
-    <div className="atom-stage" aria-label="Cornerstone CRM, HRIS and Payroll atom diagram">
+    <div className="atom-stage" aria-label="CornerstoneOS CRM, HRIS and Payroll atom diagram">
       <div className="atom-bg" />
       <svg className="atom-orbits" viewBox="0 0 720 640" aria-hidden="true">
         <g className="orbit-group orbit-group-a">
@@ -330,9 +326,8 @@ function OrbitDiagram() {
       </svg>
 
       <div className="core-glow" />
-      <div className="core-card">
-        <img src={cornerstoneMark} alt="Cornerstone platform" />
-        <strong>Cornerstone</strong>
+      <div className="core-card" aria-label="CornerstoneOS platform">
+        <img src={cornerstoneLogo} alt="CornerstoneOS platform" />
         <span>Focused business operating layer</span>
       </div>
 
@@ -363,7 +358,7 @@ function Hero() {
           Don’t Just <i>Simplify</i>. <span>Make Them Accurate, Connected, and Intelligent</span>
         </h1>
         <p className="hero-subtitle">
-          {/* Cornerstone brings CRM, HRIS, attendance, payroll, compliance, and employee workflows into one intelligent system — helping businesses automate operations, reduce errors, and make faster decisions. */}
+          {/* CornerstoneOS brings CRM, HRIS, attendance, payroll, compliance, and employee workflows into one intelligent system — helping businesses automate operations, reduce errors, and make faster decisions. */}
           Bring CRM, HRIS, and Payroll together with AI-driven workflows that help reduce errors, improve decisions, and keep every process connected from start to finish.
         </p>
         <div className="hero-actions">
@@ -378,7 +373,7 @@ function Hero() {
 
 function BenefitStrip() {
   return (
-    <section className="benefit-strip" aria-label="Cornerstone benefits">
+    <section className="benefit-strip" aria-label="CornerstoneOS benefits">
       {benefits.map(([title, copy, icon]) => (
         <article key={title} className="benefit-card">
           <div className="soft-icon"><Icon name={icon} /></div>
@@ -424,9 +419,9 @@ function OperatingOutcomes() {
   return (
     <section className="buyer-section" id="outcomes">
       <div className="section-heading">
-        <p className="eyebrow mini-eyebrow">Why Cornerstone</p>
+        <p className="eyebrow mini-eyebrow">Why CornerstoneOS</p>
         <h2>Built to <span>solve operational gaps</span> without adding complexity.</h2>
-        <p>Cornerstone keeps implementation practical: solve the highest-friction workflow first, connect the adjacent data, then expand only when the core process is working well.</p>
+        <p>CornerstoneOS keeps implementation practical: solve the highest-friction workflow first, connect the adjacent data, then expand only when the core process is working well.</p>
       </div>
       <div className="insight-grid">
         {operatingOutcomes.map((group) => (
@@ -469,7 +464,7 @@ function AboutUs() {
         <p className="eyebrow mini-eyebrow">About us</p>
         <h2><span>We are building focused business software</span> for teams that have outgrown spreadsheets.</h2>
         <p>
-          Cornerstone is designed for growing companies that need practical automation, not software that tries to solve everything at once. We focus on CRM, HRIS, and Payroll first because these are the workflows that directly affect revenue, people, and trust.
+          CornerstoneOS is designed for growing companies that need practical automation, not software that tries to solve everything at once. We focus on CRM, HRIS, and Payroll first because these are the workflows that directly affect revenue, people, and trust.
         </p>
       </div>
       <div className="about-points">
@@ -491,7 +486,7 @@ function ContactBooking() {
 
   const submit = (event) => {
     event.preventDefault();
-    const subject = encodeURIComponent(`Cornerstone ${form.interest} - ${form.company || form.name}`);
+    const subject = encodeURIComponent(`CornerstoneOS ${form.interest} - ${form.company || form.name}`);
     const body = encodeURIComponent(
       `Name: ${form.name}\nEmail: ${form.email}\nCompany: ${form.company}\nRole: ${form.role}\nInterest: ${form.interest}\n\nMessage:\n${form.message}`,
     );
@@ -563,9 +558,8 @@ function Footer() {
     <footer className="site-footer">
       <div className="footer-grid">
         <div className="footer-brand">
-          <a className="brand footer-logo" href="#top" aria-label="Cornerstone home">
-            <img src={cornerstoneMark} alt="Cornerstone logo mark" />
-            <div><span>Corner<span>stone</span></span><small>BUSINESS SOLUTIONS</small></div>
+          <a className="brand footer-logo" href="#top" aria-label="CornerstoneOS home">
+            <img src={cornerstoneLogo} alt="CornerstoneOS logo" />
           </a>
           <p>Focused software for growing teams that need CRM, HRIS, Payroll, Attendance, Recruitment, and AI-assisted operations without unnecessary complexity.</p>
           <div className="social-row"><a href="#top">in</a><a href="#top">x</a><a href="#top">f</a></div>
@@ -590,7 +584,7 @@ function Footer() {
       <div className="footer-contact"><span>✉ codepinasph@gmail.com</span><span>⌖ Philippines • Global-ready operations</span><span>Book a focused product walkthrough</span></div>
       <div className="footer-meta"><span>• Cloud-Based</span><span>• Focused Rollout</span><span>• AI-Assisted Workflows</span><span>• Payroll-Ready Data</span><span>• End-to-End Operations</span></div>
       <div className="footer-bottom">
-        <span>© {year} Cornerstone Business Solutions. All rights reserved.</span>
+        <span>© {year} CornerstoneOS. All rights reserved.</span>
         <span className="powered-by">
           <span>Powered by</span>
           <img src="/codepinas_logo.png" alt="CodePinas Solutions" />

@@ -1,6 +1,6 @@
-# Cornerstone Landing Page - v8 Oval UI
+# CornerstoneOS Landing Page - v8 Oval UI
 
-A complete React + Vite landing page for Cornerstone Business Solutions.
+A complete React + Vite landing page for CornerstoneOS.
 
 ## Highlights
 

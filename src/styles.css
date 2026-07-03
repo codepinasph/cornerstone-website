@@ -3429,3 +3429,72 @@ canvas {
     margin-bottom: -428px;
   }
 }
+
+.brand img {
+  width: auto;
+  height: clamp(64px, 5.2vw, 88px);
+  max-width: min(34vw, 430px);
+  object-fit: contain;
+  object-position: center;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  filter: none;
+}
+
+.footer-logo.brand img {
+  width: auto;
+  height: clamp(82px, 7vw, 118px);
+  max-width: min(100%, 390px);
+  object-fit: contain;
+  object-position: left center;
+  background: transparent;
+  box-shadow: none;
+}
+
+.core-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  place-items: center;
+  align-content: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 26px 24px 24px;
+  text-align: center;
+}
+
+.core-card img {
+  width: min(94%, 210px);
+  height: auto;
+  max-height: 128px;
+  margin: 0;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  filter: none;
+}
+
+.core-card span {
+  max-width: 178px;
+  margin: 0;
+  text-align: center;
+  line-height: 1.2;
+}
+
+@media (max-width: 760px) {
+  .brand img {
+    width: auto;
+    height: clamp(46px, 12vw, 58px);
+    max-width: 58vw;
+  }
+
+  .core-card img {
+    width: min(92%, 190px) !important;
+    height: auto !important;
+    max-height: 118px;
+    margin: 0 !important;
+  }
+}
