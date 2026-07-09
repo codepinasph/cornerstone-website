@@ -46,6 +46,15 @@
   --shadow-float:  0 24px 64px -16px rgba(0,0,0,0.08), 0 8px 24px -8px rgba(0,0,0,0.04);
   --shadow-lift:   0 12px 32px -8px rgba(0,0,0,0.08), 0 4px 12px -4px rgba(0,0,0,0.04);
   --shadow-glow:   0 0 48px -12px var(--glow-primary);
+  --shadow-3d:     0 24px 50px -12px rgba(0,0,0,0.14), 0 8px 24px -8px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04);
+  --shadow-3d-lift: 0 40px 80px -20px rgba(0,0,0,0.20), 0 16px 40px -12px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.06);
+
+  /* ---- Glass ---- */
+  --glass-bg:       rgba(255,255,255,0.65);
+  --glass-bg-strong:rgba(255,255,255,0.80);
+  --glass-border:   rgba(255,255,255,0.90);
+  --glass-highlight:rgba(255,255,255,0.60);
+  --glass-blur:     16px;
 
   /* ---- Radius ---- */
   --radius-card:    16px;
@@ -93,6 +102,14 @@
   --shadow-float:  0 24px 64px -16px rgba(0,0,0,0.4), 0 8px 24px -8px rgba(0,0,0,0.2);
   --shadow-lift:   0 12px 32px -8px rgba(0,0,0,0.3), 0 4px 12px -4px rgba(0,0,0,0.15);
   --shadow-glow:   0 0 48px -12px var(--glow-primary);
+  --shadow-3d:     0 24px 50px -12px rgba(0,0,0,0.50), 0 8px 24px -8px rgba(0,0,0,0.30), 0 2px 6px rgba(0,0,0,0.18);
+  --shadow-3d-lift: 0 40px 80px -20px rgba(0,0,0,0.60), 0 16px 40px -12px rgba(0,0,0,0.35), 0 4px 12px rgba(0,0,0,0.22);
+
+  --glass-bg:       rgba(22,28,40,0.55);
+  --glass-bg-strong:rgba(22,28,40,0.72);
+  --glass-border:   rgba(255,255,255,0.10);
+  --glass-highlight:rgba(255,255,255,0.08);
+  --glass-blur:     20px;
 
   --radius-card:    16px;
   --radius-lg:       20px;
@@ -177,6 +194,7 @@
 @keyframes float         { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 @keyframes pulse-glow    { 0%,100% { opacity: 0.4; } 50% { opacity: 0.9; } }
 @keyframes marquee       { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes marquee-rev   { from { transform: translateX(-50%); } to { transform: translateX(0); } }
 @keyframes fade-up       { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
 @keyframes scale-in      { from { opacity:0; transform:scale(0.96); } to { opacity:1; transform:scale(1); } }
 @keyframes shimmer       { from { background-position: -200% 0; } to { background-position: 200% 0; } }
@@ -190,6 +208,9 @@
 .animate-float       { animation: float 6s ease-in-out infinite; }
 .animate-pulse-glow  { animation: pulse-glow 3s ease-in-out infinite; }
 .animate-marquee     { animation: marquee 40s linear infinite; }
+.animate-marquee-rev { animation: marquee-rev 40s linear infinite; }
+.marquee-pause:hover .animate-marquee,
+.marquee-pause:hover .animate-marquee-rev { animation-play-state: paused; }
 .animate-fade-up     { animation: fade-up 0.7s cubic-bezier(0.16,1,0.3,1) both; }
 .animate-scale-in    { animation: scale-in 0.6s cubic-bezier(0.16,1,0.3,1) both; }
 .animate-float-slow  { animation: float-slow 8s ease-in-out infinite; }
@@ -268,6 +289,182 @@
   transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease !important;
 }
 
+/* ---------- 3D foundation ---------- */
+.scene-3d {
+  perspective: 1200px;
+  perspective-origin: 50% 40%;
+}
+.preserve-3d { transform-style: preserve-3d; }
+
+/* Glassmorphism cards */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-3d);
+  position: relative;
+}
+.glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--glass-highlight) 0%, transparent 40%);
+  pointer-events: none;
+  opacity: 0.6;
+}
+.glass-strong {
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(calc(var(--glass-blur) + 6px)) saturate(180%);
+  -webkit-backdrop-filter: blur(calc(var(--glass-blur) + 6px)) saturate(180%);
+}
+
+/* Tilt card — JS sets --tx and --ty custom props */
+.tilt-card {
+  transform: perspective(900px) rotateX(var(--ty, 0deg)) rotateY(var(--tx, 0deg)) translateZ(0);
+  transition: transform 0.2s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.tilt-card:hover {
+  box-shadow: var(--shadow-3d-lift);
+}
+.tilt-layer {
+  transform: translateZ(40px);
+  transform-style: preserve-3d;
+}
+.tilt-layer-sm {
+  transform: translateZ(24px);
+}
+.tilt-layer-lg {
+  transform: translateZ(60px);
+}
+
+/* 3D glow border that tracks tilt */
+.glow-edge {
+  position: relative;
+}
+.glow-edge::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--glow-primary), transparent 40%, var(--glow-accent) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.glow-edge:hover::after { opacity: 1; }
+
+/* Aurora gradient blobs (hero bg) */
+.aurora {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.35;
+  will-change: transform;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+/* Floating depth shadows on hover for mock panels */
+.float-panel {
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s ease;
+  will-change: transform;
+}
+.float-panel:hover {
+  transform: translateY(-8px) rotateX(2deg);
+  box-shadow: var(--shadow-3d-lift);
+}
+
+/* Ecosystem node pulse ring */
+.node-ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid var(--glow-primary);
+  opacity: 0;
+  animation: node-ring-pulse 3s ease-out infinite;
+}
+@keyframes node-ring-pulse {
+  0% { opacity: 0.6; transform: scale(0.9); }
+  100% { opacity: 0; transform: scale(1.8); }
+}
+
+/* Connection line draw animation */
+@keyframes dash-flow {
+  to { stroke-dashoffset: -40; }
+}
+.dash-flow {
+  stroke-dasharray: 6 8;
+  animation: dash-flow 1.5s linear infinite;
+}
+
+/* Shine sweep on hover */
+.shine {
+  position: relative;
+  overflow: hidden;
+}
+.shine::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -120%;
+  width: 60%; height: 100%;
+  background: linear-gradient(110deg, transparent 0%, var(--glass-highlight) 50%, transparent 100%);
+  transition: left 0.7s cubic-bezier(0.16,1,0.3,1);
+  pointer-events: none;
+}
+.shine:hover::after { left: 130%; }
+
+/* Depth-layered section background */
+.depth-bg {
+  position: relative;
+}
+.depth-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 50% at 50% 0%, var(--glow-primary) 0%, transparent 60%);
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+/* 3D perspective wrapper for mock panels */
+.perspective-wrap {
+  perspective: 1000px;
+}
+
+/* Smooth scroll */
+html { scroll-behavior: smooth; }
+
+/* ---------- Logo marquee ---------- */
+.logo-tile img {
+  color: var(--text-muted);
+  opacity: 0.55;
+  filter: grayscale(100%);
+  transition: all 0.3s ease;
+}
+.logo-tile:hover img {
+  opacity: 1;
+  filter: grayscale(0%);
+  transform: scale(1.12);
+}
+
+/* ---------- mobile: simplify 3D ---------- */
+@media (max-width: 768px) {
+  .tilt-card { transform: none !important; transition: none !important; }
+  .tilt-layer, .tilt-layer-sm, .tilt-layer-lg { transform: none !important; }
+  .float-panel:hover { transform: none !important; }
+  .glass { backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+  .aurora { filter: blur(60px); opacity: 0.2 !important; }
+  .preserve-3d { transform-style: flat !important; }
+}
+
 /* ---------- reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -277,8 +474,11 @@
     scroll-behavior: auto !important;
   }
   .parallax { transform: none !important; }
-  .animate-float, .animate-pulse-glow, .animate-marquee, .shimmer-text,
+  .animate-float, .animate-pulse-glow, .animate-marquee, .animate-marquee-rev, .shimmer-text,
   .animate-float-slow, .animate-blink, .animate-bounce-sm, .animate-border-glow,
-  .gradient-animate, .draw-line { animation: none !important; }
+  .gradient-animate, .draw-line, .dash-flow, .node-ring { animation: none !important; }
   .reveal-stagger > * { opacity: 1 !important; transform: none !important; }
+  .tilt-card { transform: none !important; }
+  .float-panel:hover { transform: none !important; }
+  .aurora { opacity: 0.1 !important; }
 }

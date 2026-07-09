@@ -36,6 +36,7 @@ import {
   Palette,
   type LucideIcon,
 } from 'lucide-react';
+import { ParticleField, AuroraBlobs, Card3D, ScrollProgress } from './three-d';
 
 /* ================================================================== */
 /*  THEME SYSTEM                                                        */
@@ -319,11 +320,11 @@ function Navbar({ mode, accent, setMode, setAccent }: {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${scrolled ? 'border-b border-[var(--border)] bg-[var(--bg)]/85 backdrop-blur-xl shadow-sm' : 'border-b border-transparent bg-transparent'}`}>
+    <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${scrolled ? 'glass-strong border-b border-[var(--border)] shadow-sm' : 'border-b border-transparent bg-transparent'}`}>
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:h-18 sm:gap-4 sm:px-8">
 
         {/* Logo — clamp-based responsive width: ~112px mobile → ~170px desktop */}
-        <a href="#top" className="flex flex-none items-center" aria-label="CornerstoneOS home">
+        <a href="#top" className="flex flex-none items-center transition-transform duration-300 hover:scale-[1.02]" aria-label="CornerstoneOS home">
           <LogoImage
             className="w-[130px] min-[375px]:w-[150px] sm:w-[180px] lg:w-[200px]"
           />
@@ -332,8 +333,9 @@ function Navbar({ mode, accent, setMode, setAccent }: {
         {/* Desktop nav */}
         <nav className="hidden items-center gap-0.5 lg:flex">
           {NAV_LINKS.map((l) => (
-            <a key={l.href} href={l.href} className="rounded-full px-3.5 py-2 text-sm font-medium text-[var(--text-muted)] transition-colors hover:text-[var(--text)]">
+            <a key={l.href} href={l.href} className="group relative rounded-full px-3.5 py-2 text-sm font-medium text-[var(--text-muted)] transition-colors hover:text-[var(--text)]">
               {l.label}
+              <span className="absolute inset-x-3.5 -bottom-0.5 h-0.5 scale-x-0 rounded-full bg-brand-gradient transition-transform duration-300 group-hover:scale-x-100" />
             </a>
           ))}
         </nav>
@@ -341,7 +343,7 @@ function Navbar({ mode, accent, setMode, setAccent }: {
         {/* Right actions */}
         <div className="flex items-center gap-2 sm:gap-2.5">
           <ThemeCustomizer mode={mode} accent={accent} setMode={setMode} setAccent={setAccent} />
-          <a href="#booking" className="group hidden items-center gap-1.5 rounded-full bg-brand-gradient px-5 py-2.5 text-sm font-semibold text-white shadow-md transition-all hover:brightness-110 hover:shadow-[0_0_28px_-6px_var(--glow-primary)] sm:inline-flex">
+          <a href="#booking" className="group hidden items-center gap-1.5 rounded-full bg-brand-gradient px-5 py-2.5 text-sm font-semibold text-white shadow-md transition-all hover:brightness-110 hover:shadow-[0_0_28px_-6px_var(--glow-primary)] hover:-translate-y-0.5 sm:inline-flex">
             Book Appointment
             <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </a>
@@ -352,7 +354,7 @@ function Navbar({ mode, accent, setMode, setAccent }: {
       </div>
 
       {/* Mobile menu */}
-      <div className={`overflow-hidden border-t border-[var(--border)] bg-[var(--bg)]/95 backdrop-blur-xl transition-all duration-300 lg:hidden ${open ? 'max-h-96' : 'max-h-0 border-t-0'}`}>
+      <div className={`overflow-hidden border-t border-[var(--border)] glass-strong transition-all duration-300 lg:hidden ${open ? 'max-h-96' : 'max-h-0 border-t-0'}`}>
         <nav className="flex flex-col gap-1 px-4 py-4 sm:px-8">
           {NAV_LINKS.map((l) => (
             <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="rounded-lg px-4 py-3 text-sm font-medium text-[var(--text-muted)] transition-colors hover:bg-[var(--bg-card)] hover:text-[var(--text)]">
@@ -377,7 +379,9 @@ function Hero() {
   const blob2Ref = useParallax(0.25);
 
   return (
-    <section id="top" className="relative overflow-hidden pt-32 pb-20 sm:pt-44 sm:pb-28">
+    <section id="top" className="scene-3d relative overflow-hidden pt-32 pb-20 sm:pt-44 sm:pb-28 depth-bg">
+      <ParticleField density={50} />
+      <AuroraBlobs />
       <div className="pointer-events-none absolute inset-0 bg-grid mask-fade-b opacity-70" />
       <div ref={blob1Ref} className="parallax pointer-events-none absolute left-1/3 top-0 h-[500px] w-[600px] -translate-x-1/2 rounded-full opacity-20 blur-[130px]" style={{ background: 'var(--primary)' }} />
       <div ref={blob2Ref} className="parallax pointer-events-none absolute right-1/4 top-10 h-[400px] w-[500px] rounded-full opacity-15 blur-[130px]" style={{ background: 'var(--accent)' }} />
@@ -387,7 +391,7 @@ function Hero() {
         <div className="mx-auto max-w-4xl text-center">
 
           <div className="animate-fade-up">
-            <Pill className="mb-8">
+            <Pill className="mb-8 glass" >
               <span className="h-1.5 w-1.5 rounded-full animate-blink" style={{ background: 'var(--primary)' }} />
               One core business platform — AI | CRM | HRIS | Payroll
             </Pill>
@@ -423,7 +427,7 @@ function Hero() {
           </div>
         </div>
 
-        <div className="animate-scale-in relative mx-auto mt-20 max-w-5xl" style={{ animationDelay: '260ms' }}>
+        <div className="animate-scale-in relative mx-auto mt-20 max-w-5xl perspective-wrap" style={{ animationDelay: '260ms' }}>
           <PlatformVisual />
         </div>
       </div>
@@ -446,23 +450,23 @@ function PlatformVisual() {
   ];
 
   return (
-    <div className="relative rounded-2xl border border-[var(--border)] bg-[var(--bg-soft)]/80 p-6 backdrop-blur-xl sm:p-10" style={{ boxShadow: 'var(--shadow-float)' }}>
-      <div className="pointer-events-none absolute -inset-px rounded-2xl" style={{ background: 'linear-gradient(135deg, var(--glow-primary) 0%, var(--glow-accent) 100%)' }} />
+    <div className="glass glass-strong preserve-3d relative rounded-2xl p-6 sm:p-10" style={{ transform: 'rotateX(2deg)', boxShadow: 'var(--shadow-3d-lift)' }}>
+      <div className="pointer-events-none absolute -inset-px rounded-2xl opacity-50" style={{ background: 'linear-gradient(135deg, var(--glow-primary) 0%, transparent 50%, var(--glow-accent) 100%)' }} />
 
       <div className="relative">
         {/* Header with logo */}
-        <div className="mb-8 flex items-center justify-between">
+        <div className="tilt-layer-sm mb-8 flex items-center justify-between">
           <LogoImage className="w-[130px] sm:w-[150px]" />
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1.5 rounded-full glass px-3 py-1">
             <span className="h-2 w-2 rounded-full animate-blink" style={{ background: 'var(--primary)' }} />
-            <span className="text-xs text-[var(--text-dim)]">Live</span>
+            <span className="text-xs font-medium text-[var(--text-dim)]">Live</span>
           </div>
         </div>
 
-        {/* Module cards */}
+        {/* Module cards — 3D floating tiles */}
         <div className="grid gap-3 sm:grid-cols-3">
           {modules.map((m, i) => (
-            <a key={m.label} href={m.href} className="group relative overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-5 transition-all duration-300 hover:border-[var(--accent)]/40 hover:bg-[var(--bg-elevated)] animate-float-slow" style={{ animationDelay: `${i * 0.8}s` }}>
+            <a key={m.label} href={m.href} className="float-panel group relative overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-5 transition-all duration-300 hover:border-[var(--accent)]/40 hover:bg-[var(--bg-elevated)] animate-float-slow" style={{ animationDelay: `${i * 0.8}s` }}>
               <div className="pointer-events-none absolute -right-6 -top-6 h-20 w-20 rounded-full opacity-0 blur-2xl transition-opacity duration-300 group-hover:opacity-100" style={{ background: 'var(--glow-accent)' }} />
               <div className="relative">
                 <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-lg border transition-transform duration-300 group-hover:scale-110" style={{ borderColor: 'var(--glow-primary)', background: 'var(--primary-light)' }}>
@@ -478,7 +482,7 @@ function PlatformVisual() {
         {/* Chips */}
         <div className="mt-3 flex flex-wrap gap-2">
           {chips.map((c) => (
-            <div key={c.label} className="inline-flex items-center gap-1.5 rounded-full border border-[var(--border)] bg-[var(--bg-card)]/60 px-3 py-1.5 text-xs text-[var(--text-muted)]">
+            <div key={c.label} className="inline-flex items-center gap-1.5 rounded-full glass px-3 py-1.5 text-xs text-[var(--text-muted)]">
               <c.icon className="h-3 w-3" style={{ color: 'var(--accent)' }} />
               {c.label}
             </div>
@@ -486,7 +490,7 @@ function PlatformVisual() {
         </div>
 
         {/* Footer bar */}
-        <div className="mt-5 flex items-center justify-between rounded-xl border border-[var(--border)] bg-[var(--bg)]/60 px-4 py-3">
+        <div className="glass mt-5 flex items-center justify-between rounded-xl px-4 py-3">
           <div className="flex items-center gap-2 text-xs text-[var(--text-muted)]">
             <Sparkles className="h-3.5 w-3.5" style={{ color: 'var(--primary)' }} />
             AI-Assisted Application
@@ -513,12 +517,12 @@ function StatsBar() {
     { value: '1',     label: 'Source of truth for the whole org' },
   ];
   return (
-    <section className="border-y border-[var(--border)] bg-[var(--bg-soft)]/40">
+    <section className="border-y border-[var(--border)] depth-bg">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="grid grid-cols-2 divide-x divide-y divide-[var(--border)] sm:grid-cols-4 sm:divide-y-0">
+        <div className="grid grid-cols-2 gap-px sm:grid-cols-4">
           {stats.map((s, i) => (
-            <div key={s.label} className="px-6 py-8 text-center sm:py-10">
-              <div className="text-3xl font-bold tracking-tight sm:text-4xl" style={{ color: i % 2 === 0 ? 'var(--primary)' : 'var(--accent)' }}>
+            <div key={s.label} className="glass float-panel group px-6 py-8 text-center sm:py-10">
+              <div className="text-3xl font-bold tracking-tight transition-transform duration-300 group-hover:scale-110 sm:text-4xl" style={{ color: i % 2 === 0 ? 'var(--primary)' : 'var(--accent)' }}>
                 {s.value}
               </div>
               <div className="mt-1.5 text-xs leading-relaxed text-[var(--text-muted)] sm:text-sm">{s.label}</div>
@@ -561,16 +565,16 @@ function PlatformOverview() {
           {features.map((f) => {
             const color = f.useAccent ? 'var(--accent)' : 'var(--primary)';
             return (
-              <div key={f.title} className="card-lift group relative overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] p-6 hover:bg-[var(--bg-elevated)]">
+              <Card3D key={f.title} className="group relative overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] p-6 hover:bg-[var(--bg-elevated)]">
                 <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100" style={{ background: f.useAccent ? 'var(--glow-accent)' : 'var(--glow-primary)' }} />
-                <div className="relative">
+                <div className="relative tilt-layer-sm">
                   <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl border transition-transform duration-300 group-hover:scale-110" style={{ borderColor: f.useAccent ? 'var(--glow-accent)' : 'var(--glow-primary)', background: f.useAccent ? 'var(--accent-soft)' : 'var(--primary-light)' }}>
                     <f.icon className="h-5 w-5 transition-transform duration-300 group-hover:animate-bounce-sm" style={{ color }} />
                   </div>
                   <h3 className="text-base font-semibold text-[var(--text)]">{f.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-[var(--text-muted)]">{f.desc}</p>
                 </div>
-              </div>
+              </Card3D>
             );
           })}
         </div>
@@ -593,9 +597,11 @@ function ModuleSection({ mod, index }: { mod: ModuleDef; index: number }) {
   const color = mod.useAccent ? 'var(--accent)' : 'var(--primary)';
   const glow  = mod.useAccent ? 'var(--glow-accent)' : 'var(--glow-primary)';
   const soft  = mod.useAccent ? 'var(--accent-soft)' : 'var(--primary-light)';
+  const glowRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section id={mod.id} className="relative py-20 sm:py-28">
+    <section id={mod.id} className="relative py-20 sm:py-28 depth-bg">
+      <div ref={glowRef} className="parallax pointer-events-none absolute top-1/4 h-[400px] w-[500px] rounded-full blur-[130px] opacity-30" style={{ background: reversed ? 'var(--glow-accent)' : 'var(--glow-primary)', [reversed ? 'left' : 'right' as const]: '5%' }} />
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className={`grid items-center gap-12 lg:grid-cols-2 ${reversed ? 'lg:[&>*:first-child]:order-2' : ''}`}>
           <div className="reveal">
@@ -639,7 +645,7 @@ function CrmMock() {
     { name: 'Closed',    count:  4, value: '$176K', fill: 100 },
   ];
   return (
-    <div className="relative rounded-2xl border border-[var(--border)] bg-[var(--bg-soft)]/80 p-5 backdrop-blur sm:p-6" style={{ boxShadow: 'var(--shadow-card)' }}>
+    <div className="glass float-panel relative rounded-2xl p-5 sm:p-6" >
       <div className="mb-5 flex items-center justify-between">
         <div>
           <div className="text-sm font-semibold text-[var(--text)]">Sales Pipeline</div>
@@ -655,7 +661,7 @@ function CrmMock() {
       </div>
       <div className="grid grid-cols-4 gap-2">
         {stages.map((s) => (
-          <div key={s.name} className="rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-3">
+          <div key={s.name} className="rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-3 transition-transform duration-300 hover:scale-[1.03]">
             <div className="text-xs font-medium text-[var(--text-muted)]">{s.name}</div>
             <div className="mt-1 text-lg font-bold text-[var(--text)]">{s.count}</div>
             <div className="text-xs font-medium" style={{ color: 'var(--primary)' }}>{s.value}</div>
@@ -671,7 +677,7 @@ function CrmMock() {
           { name: 'Atlas Manufacturing',  stage: 'Qualified', value: '$72K', tag: 'Warm' },
           { name: 'Cobalt Retail Group',  stage: 'Closed',    value: '$36K', tag: 'Won'  },
         ].map((d) => (
-          <div key={d.name} className="flex items-center justify-between rounded-lg border border-[var(--border)] bg-[var(--bg-card)]/60 px-3.5 py-2.5">
+          <div key={d.name} className="flex items-center justify-between rounded-lg border border-[var(--border)] bg-[var(--bg-card)]/60 px-3.5 py-2.5 transition-colors hover:bg-[var(--bg-elevated)]">
             <div className="flex items-center gap-3">
               <div className="flex h-8 w-8 items-center justify-center rounded-lg text-xs font-bold text-white" style={{ background: 'var(--brand-gradient)' }}>
                 {d.name[0]}
@@ -708,13 +714,13 @@ function HrisMock() {
     { name: 'Tom Becker',   role: 'Finance Analyst',     dept: 'Finance', status: 'Active',   initials: 'TB' },
   ];
   return (
-    <div className="relative rounded-2xl border border-[var(--border)] bg-[var(--bg-soft)]/80 p-5 backdrop-blur sm:p-6" style={{ boxShadow: 'var(--shadow-card)' }}>
+    <div className="glass float-panel relative rounded-2xl p-5 sm:p-6">
       <div className="mb-5 flex items-center justify-between">
         <div>
           <div className="text-sm font-semibold text-[var(--text)]">People Directory</div>
           <div className="text-xs text-[var(--text-dim)]">128 employees · 6 departments</div>
         </div>
-        <div className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-semibold" style={{ background: 'var(--accent-soft)', color: 'var(--accent)', border: '1px solid var(--glow-accent)' }}>
+        <div className="inline-flex items-center gap-1.5 rounded-full glass px-2.5 py-1 text-[10px] font-semibold" style={{ color: 'var(--accent)' }}>
           <span className="h-1.5 w-1.5 rounded-full animate-blink" style={{ background: 'var(--accent)' }} />
           Synced
         </div>
@@ -725,7 +731,7 @@ function HrisMock() {
           { label: 'Present today',     value: '119', icon: UserCheck, useAccent: true  },
           { label: 'Pending approvals', value: '7',   icon: FileText,  useAccent: false },
         ].map((c) => (
-          <div key={c.label} className="rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-3">
+          <div key={c.label} className="rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-3 transition-transform duration-300 hover:scale-[1.03]">
             <c.icon className="h-4 w-4" style={{ color: c.useAccent ? 'var(--accent)' : 'var(--primary)' }} />
             <div className="mt-2 text-xl font-bold text-[var(--text)]">{c.value}</div>
             <div className="text-[10px] text-[var(--text-muted)]">{c.label}</div>
@@ -734,7 +740,7 @@ function HrisMock() {
       </div>
       <div className="mt-4 space-y-2">
         {people.map((p) => (
-          <div key={p.name} className="flex items-center justify-between rounded-lg border border-[var(--border)] bg-[var(--bg-card)]/60 px-3.5 py-2.5">
+          <div key={p.name} className="flex items-center justify-between rounded-lg border border-[var(--border)] bg-[var(--bg-card)]/60 px-3.5 py-2.5 transition-colors hover:bg-[var(--bg-elevated)]">
             <div className="flex items-center gap-3">
               <div className="flex h-8 w-8 items-center justify-center rounded-full text-xs font-semibold text-white" style={{ background: 'var(--brand-gradient)' }}>
                 {p.initials}
@@ -767,23 +773,23 @@ function PayrollMock() {
     { name: 'Tom Becker',   gross: '$5,400', net: '$4,150', status: 'Approved' },
   ];
   return (
-    <div className="relative rounded-2xl border border-[var(--border)] bg-[var(--bg-soft)]/80 p-5 backdrop-blur sm:p-6" style={{ boxShadow: 'var(--shadow-card)' }}>
+    <div className="glass float-panel relative rounded-2xl p-5 sm:p-6">
       <div className="mb-5 flex items-center justify-between">
         <div>
           <div className="text-sm font-semibold text-[var(--text)]">Payroll Run · July</div>
           <div className="text-xs text-[var(--text-dim)]">Cycle 14 · 128 employees</div>
         </div>
-        <div className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-semibold" style={{ background: 'var(--primary-light)', color: 'var(--primary)', border: '1px solid var(--glow-primary)' }}>
+        <div className="inline-flex items-center gap-1.5 rounded-full glass px-2.5 py-1 text-[10px] font-semibold" style={{ color: 'var(--primary)' }}>
           <CheckCircle2 className="h-3 w-3" style={{ color: 'var(--primary)' }} />
           Reconciled
         </div>
       </div>
       <div className="grid grid-cols-2 gap-2.5">
-        <div className="rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-3.5">
+        <div className="rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-3.5 transition-transform duration-300 hover:scale-[1.03]">
           <div className="text-[10px] text-[var(--text-muted)]">Total gross</div>
           <div className="mt-1 text-xl font-bold text-[var(--text)]">$1.084M</div>
         </div>
-        <div className="rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-3.5">
+        <div className="rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-3.5 transition-transform duration-300 hover:scale-[1.03]">
           <div className="text-[10px] text-[var(--text-muted)]">Variance vs. budget</div>
           <div className="mt-1 text-xl font-bold" style={{ color: 'var(--primary)' }}>-0.4%</div>
         </div>
@@ -793,7 +799,7 @@ function PayrollMock() {
           <span>Employee</span><span className="text-right">Net pay</span><span className="text-right">Status</span>
         </div>
         {rows.map((r) => (
-          <div key={r.name} className="grid grid-cols-3 items-center border-b border-[var(--border-soft)] px-3.5 py-2.5 last:border-0">
+          <div key={r.name} className="grid grid-cols-3 items-center border-b border-[var(--border-soft)] px-3.5 py-2.5 last:border-0 transition-colors hover:bg-[var(--bg-elevated)]">
             <div>
               <div className="text-xs font-medium text-[var(--text)]">{r.name}</div>
               <div className="text-[10px] text-[var(--text-dim)]">{r.gross} gross</div>
@@ -852,7 +858,7 @@ function AiSection() {
     { icon: Repeat,   useAccent: true,  title: 'Workflow automation',      desc: 'Turn multi-step approvals into one-click flows that still keep full audit trails.' },
   ];
   return (
-    <section id="ai" className="relative overflow-hidden py-24 sm:py-32">
+    <section id="ai" className="relative overflow-hidden py-24 sm:py-32 depth-bg">
       <div ref={glowRef} className="parallax pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[150px]" style={{ background: 'radial-gradient(circle, var(--glow-primary) 0%, var(--glow-accent) 60%, transparent 100%)' }} />
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
         <div className="reveal mx-auto max-w-3xl text-center">
@@ -869,7 +875,7 @@ function AiSection() {
 
         <div className="reveal mt-16 grid gap-4 lg:grid-cols-2">
           {/* Chat mock */}
-          <div className="relative overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--bg-soft)]/80 p-6 backdrop-blur">
+          <div className="glass float-panel relative overflow-hidden rounded-2xl p-6">
             <div className="mb-5 flex items-center gap-2.5">
               <div className="flex h-8 w-8 items-center justify-center rounded-lg border" style={{ borderColor: 'var(--glow-primary)', background: 'var(--primary-light)' }}>
                 <Sparkles className="h-4 w-4" style={{ color: 'var(--primary)' }} />
@@ -900,13 +906,15 @@ function AiSection() {
               const glow  = c.useAccent ? 'var(--glow-accent)' : 'var(--glow-primary)';
               const soft  = c.useAccent ? 'var(--accent-soft)' : 'var(--primary-light)';
               return (
-                <div key={c.title} className="card-lift group rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] p-5 hover:bg-[var(--bg-elevated)]">
-                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl border transition-transform duration-300 group-hover:scale-110" style={{ borderColor: glow, background: soft }}>
-                    <c.icon className="h-5 w-5 transition-transform duration-300 group-hover:animate-bounce-sm" style={{ color }} />
+                <Card3D key={c.title} className="group rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] p-5 hover:bg-[var(--bg-elevated)]">
+                  <div className="tilt-layer-sm">
+                    <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl border transition-transform duration-300 group-hover:scale-110" style={{ borderColor: glow, background: soft }}>
+                      <c.icon className="h-5 w-5 transition-transform duration-300 group-hover:animate-bounce-sm" style={{ color }} />
+                    </div>
+                    <h3 className="text-sm font-semibold text-[var(--text)]">{c.title}</h3>
+                    <p className="mt-1.5 text-xs leading-relaxed text-[var(--text-muted)]">{c.desc}</p>
                   </div>
-                  <h3 className="text-sm font-semibold text-[var(--text)]">{c.title}</h3>
-                  <p className="mt-1.5 text-xs leading-relaxed text-[var(--text-muted)]">{c.desc}</p>
-                </div>
+                </Card3D>
               );
             })}
           </div>
@@ -928,7 +936,7 @@ function HowItWorks() {
     { n: '04', icon: LineChart, useAccent: true,  title: 'Run from one core',  desc: 'Your teams work in their familiar views, but every action updates the same source of truth — in real time, fully audited.' },
   ];
   return (
-    <section className="relative py-24 sm:py-32">
+    <section className="relative py-24 sm:py-32 depth-bg">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="reveal mx-auto max-w-3xl text-center">
           <SectionLabel>How it works</SectionLabel>
@@ -947,8 +955,8 @@ function HowItWorks() {
                 {i < steps.length - 1 && (
                   <div className="absolute left-full top-12 hidden h-px w-full -translate-x-4 bg-gradient-to-r from-[var(--border)] to-transparent lg:block" />
                 )}
-                <div className="card-lift group relative h-full rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] p-6">
-                  <div className="mb-5 flex items-center justify-between">
+                <Card3D className="group relative h-full rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] p-6 hover:bg-[var(--bg-elevated)]">
+                  <div className="tilt-layer-sm mb-5 flex items-center justify-between">
                     <div className="flex h-11 w-11 items-center justify-center rounded-xl border transition-transform duration-300 group-hover:scale-110" style={{ borderColor: glow, background: soft }}>
                       <s.icon className="h-5 w-5 transition-transform duration-300 group-hover:animate-bounce-sm" style={{ color }} />
                     </div>
@@ -956,7 +964,7 @@ function HowItWorks() {
                   </div>
                   <h3 className="text-base font-semibold text-[var(--text)]">{s.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-[var(--text-muted)]">{s.desc}</p>
-                </div>
+                </Card3D>
               </div>
             );
           })}
@@ -971,32 +979,62 @@ function HowItWorks() {
 /* ================================================================== */
 
 function Integrations() {
-  const items = [
-    'Slack', 'Google Workspace', 'Microsoft 365', 'QuickBooks',
-    'Xero', 'Gusto', 'BambooHR', 'Rippling',
-    'DocuSign', 'Stripe', 'Zapier', 'Workday',
-    'SAP', 'Oracle HCM', 'ADP',
+  const logos = [
+    'slack', 'google-workspace', 'microsoft-365', 'quickbooks',
+    'xero', 'gusto', 'bamboohr', 'rippling',
+    'docusign', 'stripe', 'zapier', 'workday',
+    'sap', 'oracle', 'adp',
   ];
+  // Split into two rows; second row reversed direction for visual variety
+  const row1 = logos.slice(0, 8);
+  const row2 = logos.slice(7); // overlap slightly so both rows feel full
+
   return (
-    <section className="border-y border-[var(--border)] bg-[var(--bg-soft)]/40 py-16 sm:py-20">
+    <section className="relative border-y border-[var(--border)] py-16 sm:py-20 depth-bg overflow-hidden">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <p className="mb-10 text-center text-xs font-semibold uppercase tracking-[0.22em] text-[var(--text-dim)]">
           Connects with the tools you already use
         </p>
-        <div className="reveal reveal-stagger grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5">
-          {items.map((name) => (
-            <div
-              key={name}
-              className="card-lift group flex items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--bg-card)] px-4 py-5 text-center transition-colors hover:border-[var(--accent)]/40"
-            >
-              <span className="text-sm font-semibold text-[var(--text-muted)] transition-colors group-hover:text-[var(--text)]">
-                {name}
-              </span>
-            </div>
-          ))}
+      </div>
+
+      {/* Edge fade masks */}
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-[var(--bg)] to-transparent sm:w-40" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-[var(--bg)] to-transparent sm:w-40" />
+
+      {/* Row 1 — scrolls left */}
+      <div className="marquee-pause relative flex overflow-hidden">
+        <div className="animate-marquee flex flex-none items-center gap-12 pr-12 sm:gap-16 sm:pr-16">
+          {row1.map((name) => <LogoTile key={`a-${name}`} name={name} />)}
+        </div>
+        <div className="animate-marquee flex flex-none items-center gap-12 pr-12 sm:gap-16 sm:pr-16" aria-hidden>
+          {row1.map((name) => <LogoTile key={`b-${name}`} name={name} />)}
+        </div>
+      </div>
+
+      {/* Row 2 — scrolls right */}
+      <div className="marquee-pause relative mt-8 flex overflow-hidden">
+        <div className="animate-marquee-rev flex flex-none items-center gap-12 pr-12 sm:gap-16 sm:pr-16">
+          {row2.map((name) => <LogoTile key={`c-${name}`} name={name} />)}
+        </div>
+        <div className="animate-marquee-rev flex flex-none items-center gap-12 pr-12 sm:gap-16 sm:pr-16" aria-hidden>
+          {row2.map((name) => <LogoTile key={`d-${name}`} name={name} />)}
         </div>
       </div>
     </section>
+  );
+}
+
+function LogoTile({ name }: { name: string }) {
+  const label = name.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+  return (
+    <div className="logo-tile flex flex-none items-center justify-center">
+      <img
+        src={`/logos/${name}.svg`}
+        alt={label}
+        className="h-7 w-auto max-w-[140px] sm:h-8"
+        loading="lazy"
+      />
+    </div>
   );
 }
 
@@ -1011,7 +1049,7 @@ function About() {
     { icon: Lock,   useAccent: false, title: 'Trust through transparency', desc: 'Full audit trails, role-based access, and no black-box decisions.' },
   ];
   return (
-    <section id="about" className="relative py-24 sm:py-32">
+    <section id="about" className="relative py-24 sm:py-32 depth-bg">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
           <div className="reveal">
@@ -1042,15 +1080,15 @@ function About() {
               const glow  = v.useAccent ? 'var(--glow-accent)' : 'var(--glow-primary)';
               const soft  = v.useAccent ? 'var(--accent-soft)' : 'var(--primary-light)';
               return (
-                <div key={v.title} className="card-lift group flex gap-4 rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] p-5 hover:bg-[var(--bg-elevated)]">
-                  <div className="flex h-11 w-11 flex-none items-center justify-center rounded-xl border transition-transform duration-300 group-hover:scale-110" style={{ borderColor: glow, background: soft }}>
+                <Card3D key={v.title} className="group flex gap-4 rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] p-5 hover:bg-[var(--bg-elevated)]">
+                  <div className="tilt-layer-sm flex h-11 w-11 flex-none items-center justify-center rounded-xl border transition-transform duration-300 group-hover:scale-110" style={{ borderColor: glow, background: soft }}>
                     <v.icon className="h-5 w-5 transition-transform duration-300 group-hover:animate-bounce-sm" style={{ color }} />
                   </div>
-                  <div>
+                  <div className="tilt-layer-sm">
                     <h3 className="text-base font-semibold text-[var(--text)]">{v.title}</h3>
                     <p className="mt-1 text-sm leading-relaxed text-[var(--text-muted)]">{v.desc}</p>
                   </div>
-                </div>
+                </Card3D>
               );
             })}
           </div>
@@ -1073,7 +1111,7 @@ function Booking() {
   const handleSubmit = (e: React.FormEvent) => { e.preventDefault(); setSubmitted(true); };
 
   return (
-    <section id="booking" className="relative overflow-hidden py-24 sm:py-32">
+    <section id="booking" className="relative overflow-hidden py-24 sm:py-32 depth-bg">
       <div ref={blob1Ref} className="parallax pointer-events-none absolute left-1/4 top-0 h-[400px] w-[600px] -translate-x-1/2 rounded-full blur-[120px]" style={{ background: 'var(--glow-primary)' }} />
       <div ref={blob2Ref} className="parallax pointer-events-none absolute right-1/4 top-20 h-[300px] w-[500px] rounded-full blur-[120px]" style={{ background: 'var(--glow-accent)' }} />
       <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
@@ -1101,7 +1139,7 @@ function Booking() {
           </div>
 
           <div className="reveal">
-            <div className="relative rounded-2xl border border-[var(--border)] bg-[var(--bg-soft)]/80 p-6 backdrop-blur sm:p-8" style={{ boxShadow: 'var(--shadow-card)' }}>
+            <div className="glass glass-strong float-panel relative rounded-2xl p-6 sm:p-8">
               {submitted ? (
                 <div className="flex flex-col items-center py-12 text-center">
                   <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full" style={{ background: 'var(--primary-light)' }}>
@@ -1221,7 +1259,7 @@ function Reliability() {
     { icon: Lock,         useAccent: true,  title: 'Access level depends on subscription',     desc: 'System access — dashboards, reports, approvals, employee records — is provided based on your selected plan.' },
   ];
   return (
-    <section className="relative overflow-hidden py-24 sm:py-32">
+    <section className="relative overflow-hidden py-24 sm:py-32 depth-bg">
       <div className="pointer-events-none absolute left-1/2 top-0 h-[400px] w-[700px] -translate-x-1/2 rounded-full blur-[140px]" style={{ background: 'radial-gradient(circle, var(--glow-primary) 0%, transparent 70%)' }} />
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
         <div className="reveal mx-auto max-w-3xl text-center">
@@ -1236,19 +1274,19 @@ function Reliability() {
             business from payroll delays, system issues, and manual processing errors.
           </p>
         </div>
-        <div className="reveal mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="reveal reveal-stagger mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {points.map((p) => {
             const color = p.useAccent ? 'var(--accent)' : 'var(--primary)';
             const glow  = p.useAccent ? 'var(--glow-accent)' : 'var(--glow-primary)';
             const soft  = p.useAccent ? 'var(--accent-soft)' : 'var(--primary-light)';
             return (
-              <div key={p.title} className="group rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] p-6 transition-all duration-300 hover:bg-[var(--bg-elevated)]">
-                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl border" style={{ borderColor: glow, background: soft }}>
+              <Card3D key={p.title} className="group rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] p-6 hover:bg-[var(--bg-elevated)]">
+                <div className="tilt-layer-sm mb-4 flex h-10 w-10 items-center justify-center rounded-xl border transition-transform duration-300 group-hover:scale-110" style={{ borderColor: glow, background: soft }}>
                   <p.icon className="h-5 w-5" style={{ color }} />
                 </div>
                 <h3 className="text-sm font-semibold text-[var(--text)]">{p.title}</h3>
                 <p className="mt-1.5 text-xs leading-relaxed text-[var(--text-muted)]">{p.desc}</p>
-              </div>
+              </Card3D>
             );
           })}
         </div>
@@ -1367,7 +1405,7 @@ function Faq() {
   };
 
   return (
-    <section className="py-24 sm:py-32">
+    <section className="py-24 sm:py-32 depth-bg">
       <div className="mx-auto max-w-5xl px-5 sm:px-8">
         <div className="reveal text-center">
           <SectionLabel>FAQ</SectionLabel>
@@ -1379,14 +1417,14 @@ function Faq() {
 
         {/* Search */}
         <div className="reveal mx-auto mt-8 max-w-md">
-          <div className="relative">
+          <div className="glass relative">
             <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--text-dim)]" />
             <input
               type="text"
               value={search}
               onChange={(e) => { setSearch(e.target.value); setVisibleCount(INITIAL_VISIBLE); setOpenKey(null); }}
               placeholder="Search FAQs…"
-              className="w-full rounded-full border border-[var(--border)] bg-[var(--bg-card)] py-3 pl-10 pr-4 text-sm text-[var(--text)] placeholder:text-[var(--text-dim)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/30"
+              className="w-full bg-transparent py-3 pl-10 pr-4 text-sm text-[var(--text)] placeholder:text-[var(--text-dim)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/30 rounded-full"
             />
           </div>
         </div>
@@ -1399,10 +1437,10 @@ function Faq() {
               <button
                 key={cat.id}
                 onClick={() => handleCatChange(cat.id)}
-                className="rounded-full border px-4 py-2 text-xs font-medium transition-all"
+                className={`rounded-full px-4 py-2 text-xs font-medium transition-all ${isActive ? '' : 'glass'}`}
                 style={isActive
-                  ? { borderColor: 'var(--primary)', background: 'var(--primary-light)', color: 'var(--primary)' }
-                  : { borderColor: 'var(--border)', background: 'var(--bg-card)', color: 'var(--text-muted)' }}
+                  ? { borderColor: 'var(--primary)', background: 'var(--primary-light)', color: 'var(--primary)', border: '1px solid var(--primary)' }
+                  : {}}
               >
                 {cat.label}
               </button>
@@ -1413,7 +1451,7 @@ function Faq() {
         {/* FAQ items — two-column on desktop, stacked on mobile */}
         <div className="reveal mt-10 grid gap-3 lg:grid-cols-2">
           {visibleItems.length === 0 ? (
-            <div className="col-span-full rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] py-12 text-center">
+            <div className="glass col-span-full py-12 text-center">
               <p className="text-sm text-[var(--text-muted)]">No FAQs match your search. Try a different keyword or category.</p>
             </div>
           ) : (
@@ -1421,7 +1459,7 @@ function Faq() {
               const key = `${activeCat}-${i}`;
               const isOpen = openKey === key;
               return (
-                <div key={key} className="overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] transition-colors hover:bg-[var(--bg-elevated)]">
+                <div key={key} className="glass float-panel overflow-hidden transition-colors hover:bg-[var(--bg-elevated)]">
                   <button onClick={() => setOpenKey(isOpen ? null : key)} className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left">
                     <span className="text-sm font-semibold text-[var(--text)]">{f.q}</span>
                     <ChevronDown className="h-4 w-4 flex-none transition-transform duration-300" style={{ color: 'var(--primary)', transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }} />
@@ -1442,7 +1480,7 @@ function Faq() {
           <div className="mt-6 text-center">
             <button
               onClick={() => setVisibleCount((c) => c + INITIAL_VISIBLE)}
-              className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--bg-card)] px-5 py-2.5 text-sm font-medium text-[var(--text-muted)] transition-colors hover:border-[var(--primary)]/40 hover:text-[var(--text)]"
+              className="glass inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium text-[var(--text-muted)] transition-colors hover:border-[var(--primary)]/40 hover:text-[var(--text)]"
             >
               View more FAQs
               <ChevronDown className="h-4 w-4" />
@@ -1465,7 +1503,7 @@ function Footer() {
     { title: 'Resources', links: ['Documentation','API reference','Security','Changelog','Status'] },
   ];
   return (
-    <footer className="border-t border-[var(--border)] bg-[var(--bg-soft)]/40">
+    <footer className="glass-strong border-t border-[var(--border)]">
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
         <div className="grid gap-10 lg:grid-cols-5">
           <div className="lg:col-span-2">
@@ -1487,7 +1525,7 @@ function Footer() {
               <ul className="mt-4 space-y-2.5">
                 {c.links.map((l) => (
                   <li key={l}>
-                    <a href="#" className="text-sm text-[var(--text-muted)] transition-colors hover:text-[var(--text)]">{l}</a>
+                    <a href="#" className="text-sm text-[var(--text-muted)] transition-all hover:translate-x-0.5 hover:text-[var(--text)]">{l}</a>
                   </li>
                 ))}
               </ul>
@@ -1515,6 +1553,7 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen bg-[var(--bg)]">
+      <ScrollProgress />
       <Navbar mode={mode} accent={accent} setMode={setMode} setAccent={setAccent} />
       <main>
         <Hero />
