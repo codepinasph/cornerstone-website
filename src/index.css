@@ -444,14 +444,12 @@ html { scroll-behavior: smooth; }
 
 /* ---------- Logo marquee ---------- */
 .logo-tile img {
-  color: var(--text-muted);
-  opacity: 0.55;
-  filter: grayscale(100%);
+  opacity: 0.85;
+  filter: none;
   transition: all 0.3s ease;
 }
 .logo-tile:hover img {
   opacity: 1;
-  filter: grayscale(0%);
   transform: scale(1.12);
 }
 

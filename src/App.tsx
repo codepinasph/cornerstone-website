@@ -985,9 +985,6 @@ function Integrations() {
     'docusign', 'stripe', 'zapier', 'workday',
     'sap', 'oracle', 'adp',
   ];
-  // Split into two rows; second row reversed direction for visual variety
-  const row1 = logos.slice(0, 8);
-  const row2 = logos.slice(7); // overlap slightly so both rows feel full
 
   return (
     <section className="relative border-y border-[var(--border)] py-16 sm:py-20 depth-bg overflow-hidden">
@@ -1001,23 +998,13 @@ function Integrations() {
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-[var(--bg)] to-transparent sm:w-40" />
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-[var(--bg)] to-transparent sm:w-40" />
 
-      {/* Row 1 — scrolls left */}
+      {/* Single row — infinite scroll right to left */}
       <div className="marquee-pause relative flex overflow-hidden">
         <div className="animate-marquee flex flex-none items-center gap-12 pr-12 sm:gap-16 sm:pr-16">
-          {row1.map((name) => <LogoTile key={`a-${name}`} name={name} />)}
+          {logos.map((name) => <LogoTile key={`a-${name}`} name={name} />)}
         </div>
         <div className="animate-marquee flex flex-none items-center gap-12 pr-12 sm:gap-16 sm:pr-16" aria-hidden>
-          {row1.map((name) => <LogoTile key={`b-${name}`} name={name} />)}
-        </div>
-      </div>
-
-      {/* Row 2 — scrolls right */}
-      <div className="marquee-pause relative mt-8 flex overflow-hidden">
-        <div className="animate-marquee-rev flex flex-none items-center gap-12 pr-12 sm:gap-16 sm:pr-16">
-          {row2.map((name) => <LogoTile key={`c-${name}`} name={name} />)}
-        </div>
-        <div className="animate-marquee-rev flex flex-none items-center gap-12 pr-12 sm:gap-16 sm:pr-16" aria-hidden>
-          {row2.map((name) => <LogoTile key={`d-${name}`} name={name} />)}
+          {logos.map((name) => <LogoTile key={`b-${name}`} name={name} />)}
         </div>
       </div>
     </section>
